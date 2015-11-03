@@ -64,11 +64,11 @@ Con estas líneas, importamos la funcionalidad necesaria para el ejemplo. `panda
 
 El método `read_csv` de `pandas` permite dos modos de trabajo: que el propio fichero csv tenga una fila con los nombres de las variables o que nosotros especifiquemos los nombres de las variables en la llamada. En este caso, vamos a utilizar la segunda aproximación. De esta forma, creamos un *array* con los nombres de las variables:
 ```python
-nombreVariables = ['longitud_sepalo', 'ancho_sepalo', 'longitud_petalo', 'ancho_petalo', 'clase']
+nombre_variables = ['longitud_sepalo', 'ancho_sepalo', 'longitud_petalo', 'ancho_petalo', 'clase']
 ```
 y leemos el dataset con:
 ```python
-iris = pd.read_csv('data/iris.csv', names = nombreVariables)
+iris = pd.read_csv('data/iris.csv', names = nombre_variables)
 ```
 `iris` es un objeto de la clase [`DataFrame`](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html) de `pandas`.
 
@@ -78,6 +78,7 @@ Antes de nada, es conveniente realizar una pequeña **inspección** de los datos
 ```python
 print iris.head(9)
 ```
+Ahora vamos a utilizar una función para inspeccionar detenidamente cada para de variables y su relación con las etiquetas de clase. De esta forma, construiremos un gráfico de 
 
 # Referencias
 - Python como alternativa a R en *machine learning*. Mario Pérez Esteso. [Enlace a Github](https://github.com/MarioPerezEsteso/Python-Machine-Learning). [Enlace a Youtube](https://www.youtube.com/watch?v=8yz4gWt7Klk). 
