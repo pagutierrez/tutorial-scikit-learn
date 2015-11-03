@@ -80,7 +80,59 @@ Antes de nada, es conveniente realizar una pequeña **inspección** de los datos
 ```python
 print iris.head(9)
 ```
-Ahora vamos a utilizar una función para inspeccionar detenidamente cada para de variables y su relación con las etiquetas de clase. De esta forma, construiremos un gráfico de 
+Ahora vamos a utilizar una función para inspeccionar detenidamente cada par de variables y su relación con las etiquetas de clase. De esta forma, construiremos un gráfico de (3x4) subgráficos, que incluya, para cada par de variables, los 150 patrones, con un calor que indique la etiqueta de clase y donde las coordenadas x e y se correspondan con los valores de las variables afectadas. Esto se puede hacer con el siguiente código:
+```python
+def plot_dataset(dataset,nombre_variables):
+    """ Función que pinta un dataset
+    dataset es el DataFrame que vamos a utilizar para extraer los datos
+    nombre_variables es el nombre de las variables de ese dataset
+    * Supondremos que la última variable es la etiqueta de clase
+    """
+    # Numero de variables
+    num_variables = dataset.shape[1]
+    # Extraer la etiqueta de clase
+    labels = dataset[nombre_variables[-1]]
+    # Convertir la etiqueta a números enteros (1,2,3...)
+    labelencoder = preprocessing.LabelEncoder()
+    labelencoder.fit(labels)
+    labels = labelencoder.transform(labels)
+    # Número de plot
+    plot_index = 1
+    plt.figure(figsize=(18,12))
+    plt.clf()
+    for i in range(0,num_variables-1):
+        for j in range(0,num_variables-1):
+            if i != j:  
+                # Extraer variables i y j
+                x = dataset[nombre_variables[i]]
+                y = dataset[nombre_variables[j]]
+                # Elegir el subplot
+                plt.subplot(num_variables-2, num_variables-1, plot_index)
+                # Pintar los puntos
+                plt.scatter(x, y, c=labels)
+                # Etiquetas para los ejes
+                plt.xlabel(nombre_variables[i])
+                plt.ylabel(nombre_variables[j])
+                # Título para el gráfico
+                plt.title(nombre_variables[j]+" vs "+nombre_variables[i])
+                # Extraer rangos de las variables y establecerlos
+                x_min, x_max = x.min() - .5, x.max() + .5
+                y_min, y_max = y.min() - .5, y.max() + .5
+                plt.xlim(x_min, x_max)
+                plt.ylim(y_min, y_max)
+                # Que no se vean los ticks
+                plt.xticks(())
+                plt.yticks(())
+                plot_index = plot_index + 1
+    plt.show()
+```
+
+Si ahora queremos usar la función con el dataset iris, podemos llamarla de la siguiente forma:
+```python
+plot_dataset(iris,nombre_variables)
+```
+El resultado debería ser el siguiente:
+![Scatterplot de iris](images/iris.png)
 
 # Referencias
 - Python como alternativa a R en *machine learning*. Mario Pérez Esteso. [Enlace a Github](https://github.com/MarioPerezEsteso/Python-Machine-Learning). [Enlace a Youtube](https://www.youtube.com/watch?v=8yz4gWt7Klk). 
