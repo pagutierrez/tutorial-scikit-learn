@@ -134,6 +134,115 @@ plot_dataset(iris,nombre_variables)
 El resultado debería ser el siguiente:
 ![Scatterplot de iris](images/iris.png)
 
+## Manejo de DataFrame
+
+Los DataFrame [`DataFrame`](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html) son objetos que representan a los *datasets* con los que vamos a operar. Permiten realizar muchas operaciones de forma automática, ayudando a transformar las variables de forma muy cómoda. Internamente, el dataset se guarda en un array bidimensional de `numpy` (clase [`ndarray`](http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html)). El acceso a los elementos de un [`DataFrame`](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html) es algo más simple si utilizamos su versión [`ndarray`](http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html), para lo cual simplemente tenemos que utilizar el atributo `values`:
+```python
+print iris['longitud_sepalo']
+print iris[nombre_variables[0]]
+irisArray = iris.values
+print irisArray[:,0]
+```
+La sintaxis de indexación en un [`ndarray`](http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html) es la siguiente:
+- `array[i,j]`: accede al valor de la fila `i` columna `j`.
+- `array[i:j,k]`: devuelve otro `ndarray` con la submatriz correspondiente a las filas desde la `i` hasta la `j-1` y a la columna `k`.
+- `array[i:j,k:l]`: devuelve otro `ndarray` con la submatriz correspondiente a las filas desde la `i` hasta la `j-1` y a las columnas desde la `k` hasta la `l`.
+- `array[i:j,:]`: devuelve otro `ndarray` con la submatriz correspondiente a las filas desde la `i` hasta la `j-1` y **todas** las columnas.
+- `array[:,i:j]`: devuelve otro `ndarray` con la submatriz correspondiente a **todas** las filas y a las columnas desde la `k` hasta la `l`.
+De esta forma:
+```python
+>>> irisArray[0:2,2:4]
+array([[1.4, 0.2],
+       [1.4, 0.2]], dtype=object)
+>>> iris[0:2][nombre_variables[2:4]]
+   longitud_petalo  ancho_petalo
+0              1.4           0.2
+1              1.4           0.2
+>>> irisArray[1:6,:]
+array([[4.9, 3.0, 1.4, 0.2, 'Iris-setosa'],
+       [4.7, 3.2, 1.3, 0.2, 'Iris-setosa'],
+       [4.6, 3.1, 1.5, 0.2, 'Iris-setosa'],
+       [5.0, 3.6, 1.4, 0.2, 'Iris-setosa'],
+       [5.4, 3.9, 1.7, 0.4, 'Iris-setosa']], dtype=object)
+>>> iris[1:6][nombre_variables[:]]
+   longitud_sepalo  ancho_sepalo  longitud_petalo  ancho_petalo        clase
+1              4.9           3.0              1.4           0.2  Iris-setosa
+2              4.7           3.2              1.3           0.2  Iris-setosa
+3              4.6           3.1              1.5           0.2  Iris-setosa
+4              5.0           3.6              1.4           0.2  Iris-setosa
+5              5.4           3.9              1.7           0.4  Iris-setosa
+```
+Vemos que el acceso a través del `ndarray` es, por lo general, más cómodo, ya que no requerimos del nombre de las variables.
+
+En `scikit-learn`, al igual que en otros lenguajes de programación como R o Matlab, debemos intentar, siempre que sea posible, *vectorizar* las operaciones. Esto es utilizar operaciones matriciales en lugar de bucles que recorran los arrays. La razón es que este tipo de operaciones están muchos más optimizadas y que el proceso de referenciación de *arrays* puede consumir mucho tiempo.
+
+Imaginemos que queremos imprimir el área de sépalo de todas las flores. Compara la diferencia entre hacerlo mediante un bucle `for` y mediante operaciones matriciales:
+```python
+# Generar un array con el área del sépalo (longitud*anchura), utilizando un for
+# Crear un array vacío
+areaSepaloArray = np.empty(irisArray.shape[0]) # OJO paréntesis
+for i in range(0,irisArray.shape[0]):
+    areaSepaloArray[i] = irisArray[i,0] * irisArray[i,1]
+print areaSepaloArray
+
+# Generar un array con el área del sépalo (longitud*anchura), utilizando operaciones matriciales
+# Crear un array vacío e inicializarlo a 0
+print irisArray[:,0] * irisArray[:,1]
+```
+
+Es más, los `ndarray` permiten aplicar operaciones lógicas, que devuelven otro `ndarray` con el resultado de realizar esas operaciones lógicas:
+```python
+>>> irisArray[:,2] > 5
+array([False, False, False, False, False, False, False, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False, False,  True, False, False, False, False, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False,  True,  True,  True,  True,  True,  True, False,  True,
+        True,  True,  True,  True,  True, False,  True,  True,  True,
+        True,  True, False,  True, False,  True, False,  True,  True,
+       False, False,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True, False,  True,  True,  True,  True,  True,
+        True,  True, False,  True,  True,  True], dtype=bool)
+```
+A su vez, este `ndarray` se puede usar para indexar el `ndarray` original:
+```python
+>>> irisArray[irisArray[:,2] > 5,4]
+array(['Iris-versicolor', 'Iris-virginica', 'Iris-virginica',
+       'Iris-virginica', 'Iris-virginica', 'Iris-virginica',
+       'Iris-virginica', 'Iris-virginica', 'Iris-virginica',
+       'Iris-virginica', 'Iris-virginica', 'Iris-virginica',
+       'Iris-virginica', 'Iris-virginica', 'Iris-virginica',
+       'Iris-virginica', 'Iris-virginica', 'Iris-virginica',
+       'Iris-virginica', 'Iris-virginica', 'Iris-virginica',
+       'Iris-virginica', 'Iris-virginica', 'Iris-virginica',
+       'Iris-virginica', 'Iris-virginica', 'Iris-virginica',
+       'Iris-virginica', 'Iris-virginica', 'Iris-virginica',
+       'Iris-virginica', 'Iris-virginica', 'Iris-virginica',
+       'Iris-virginica', 'Iris-virginica', 'Iris-virginica',
+       'Iris-virginica', 'Iris-virginica', 'Iris-virginica',
+       'Iris-virginica', 'Iris-virginica', 'Iris-virginica'], dtype=object)
+```
+Imagina que ahora queremos imprimir la longitud de sépalo de aquellas flores cuya longitud de sépalo es mayor que 2. Compara la versión con `for` y la versión "vectorizada":
+```python
+# Imprimir las longitudes de sépalo mayores que 2, utilizando un for
+irisArray = iris.values
+for i in range(0,irisArray.shape[0]):
+    valorSepalo = irisArray[i,0]
+    if valorSepalo > 2:
+        print valorSepalo
+        
+# Imprimir las longitudes de sépalo mayores que 2, utilizando operaciones matriciales
+print irisArray[ irisArray[:,0] > 2, 0]
+```
+
+
 # Referencias
 - Python como alternativa a R en *machine learning*. Mario Pérez Esteso. [Enlace a Github](https://github.com/MarioPerezEsteso/Python-Machine-Learning). [Enlace a Youtube](https://www.youtube.com/watch?v=8yz4gWt7Klk). 
 - *An introduction to machine learning with scikit-learn*. Documentación oficial de `scikit-learn`. [http://scikit-learn.org/stable/tutorial/basic/tutorial.html](http://scikit-learn.org/stable/tutorial/basic/tutorial.html).
