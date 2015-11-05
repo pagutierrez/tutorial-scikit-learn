@@ -240,11 +240,26 @@ for i in range(0,iris_array.shape[0]):
         
 # Imprimir las longitudes de sépalo mayores que 2, utilizando operaciones matriciales
 print iris_array[ iris_array[:,0] > 2, 0]
-```
-Podemos usar algunas funciones adicionales sobre objetos de tipo `ndarray`. Por ejemplo, el siguiente código imprime la media y la desviación típica del área de las flores de tipo `Iris-virginica`:
+
+Podemos usar algunas funciones adicionales sobre objetos de tipo `ndarray`. Por ejemplo, las funciones [`numpy.mean`](http://docs.scipy.org/doc/numpy/reference/generated/numpy.mean.html) y [`numpy.std`](http://docs.scipy.org/doc/numpy/reference/generated/numpy.std.html) nos sirven para calcular la media y la desviación típica, respectivamente, de los valores contenidos en el `ndarray` que se pasa como argumento.
+
+Por último, podemos realizar operaciones matriciales con los `ndarray` de forma muy simple y optimizada. La función [`numpy.dot`](http://docs.scipy.org/doc/numpy/reference/generated/numpy.dot.html) multiplica dos `ndarray`, siempre que sus dimensiones sean compatibles. La función [`numpy.transpose`]
 ```python
-d
+>>> a = [[1, 0], [0, 1]]
+>>> b = [[4, 1], [2, 2]]
+>>> np.dot(a, b)
+array([[4, 1],
+       [2, 2]])
+>>> x = np.arange(4).reshape((2,2))
+>>> x
+array([[0, 1],
+       [2, 3]])
+>>> np.transpose(x)
+array([[0, 2],
+       [1, 3]])
 ```
+
+**Ejercicio**: Prueba a imprimir la media y la desviación típica del áreas de aquellas flores que son de tipo *virginica*.
 
 # Referencias
 - Python como alternativa a R en *machine learning*. Mario Pérez Esteso. [Enlace a Github](https://github.com/MarioPerezEsteso/Python-Machine-Learning). [Enlace a Youtube](https://www.youtube.com/watch?v=8yz4gWt7Klk). 
