@@ -259,7 +259,7 @@ array([[0, 2],
        [1, 3]])
 ```
 
-**Ejercicio**: Prueba a imprimir la media y la desviación típica del áreas de aquellas flores que son de tipo *virginica*.
+**Ejercicio**: Prueba a imprimir la media y la desviación típica del área de aquellas flores que son de tipo *virginica*.
 
 ## División de datos en entrenamiento y test
 
@@ -291,6 +291,7 @@ test_inputs_iris = iris_test.values[:,0:-1]
 test_outputs_iris = iris_test.values[:,-1]
 print train_inputs_iris.shape
 ```
+Si nos proporcionan la base de datos completa para que hagamos nosotros las particiones, todas las clases y funciones del módulo [`sklearn.cross_validation`](http://scikit-learn.org/stable/modules/cross_validation.html) de `scikit-learn` nos pueden facilitar mucho la labor.
 
 ## Labores de preprocesamiento
 
