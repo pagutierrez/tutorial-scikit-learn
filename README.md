@@ -298,6 +298,15 @@ Sin embargo, `scikit-learn` no acepta cadenas como parámetros de las funciones,
 - `Iris-versicolor` -> 1
 - `Iris-virginica` -> 2
 
+Para ello, nos podemos valer del objeto [`sklearn.preprocessing.LabelEncoder`](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html), que nos transforma automáticamente de cadenas a números. La forma en que se utiliza es la siguiente:
+```python
+label_e_train = preprocessing.LabelEncoder()
+label_e_train.fit(train_outputs_iris)
+train_outputs_iris_encoded = label_e_train.transform(train_outputs_iris)
+label_e_test = preprocessing.LabelEncoder()
+label_e_test.fit(test_outputs_iris)
+test_outputs_iris_encoded = label_e_test.transform(test_outputs_iris)
+```
 
 
 # Referencias
