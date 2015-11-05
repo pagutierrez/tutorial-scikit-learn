@@ -80,7 +80,7 @@ Antes de nada, es conveniente realizar una pequeña **inspección** de los datos
 ```python
 print iris.head(9)
 ```
-Ahora vamos a utilizar una función para inspeccionar detenidamente cada par de variables y su relación con las etiquetas de clase. De esta forma, construiremos un gráfico de (3x4) subgráficos que incluya, para cada par de variables, los 150 patrones, con un calor que indique la etiqueta de clase y donde las coordenadas x e y se correspondan con los valores de las variables afectadas. Esto se puede hacer con el siguiente código:
+Ahora vamos a utilizar una función para inspeccionar detenidamente cada par de variables y su relación con las etiquetas de clase. De esta forma, construiremos un gráfico de (3x4) subgráficos que incluya, para cada par de variables, los 150 patrones, con un color que indique la etiqueta de clase y donde las coordenadas x e y se correspondan con los valores de las variables afectadas. Esto se puede hacer con el siguiente código:
 ```python
 def plot_dataset(dataset,nombre_variables):
     """ Función que pinta un dataset
@@ -136,7 +136,7 @@ El resultado debería ser el siguiente:
 
 ## Manejo de objetos `DataFrame` y `ndarray`
 
-Los DataFrame [`DataFrame`](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html) son objetos que representan a los *datasets* con los que vamos a operar. Permiten realizar muchas operaciones de forma automática, ayudando a transformar las variables de forma muy cómoda. Internamente, el dataset se guarda en un array bidimensional de `numpy` (clase [`ndarray`](http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html)). El acceso a los elementos de un [`DataFrame`](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html) es algo más simple si utilizamos su versión [`ndarray`](http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html), para lo cual simplemente tenemos que utilizar el atributo `values`:
+Los [`DataFrame`](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html) son objetos que representan a los *datasets* con los que vamos a operar. Permiten realizar muchas operaciones de forma automática, ayudando a transformar las variables de forma muy cómoda. Internamente, el dataset se guarda en un array bidimensional de `numpy` (clase [`ndarray`](http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html)). El acceso a los elementos de un [`DataFrame`](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html) es algo más simple si utilizamos su versión [`ndarray`](http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html), para lo cual simplemente tenemos que utilizar el atributo `values`:
 ```python
 print iris['longitud_sepalo']
 print iris[nombre_variables[0]]
@@ -180,13 +180,12 @@ Imaginemos que queremos imprimir el área de sépalo de todas las flores. Compar
 ```python
 # Generar un array con el área del sépalo (longitud*anchura), utilizando un for
 # Crear un array vacío
-areaSepaloArray = np.empty(iris_array.shape[0]) # OJO paréntesis
+areaSepaloArray = np.empty(iris_array.shape[0])
 for i in range(0,iris_array.shape[0]):
     areaSepaloArray[i] = iris_array[i,0] * iris_array[i,1]
 print areaSepaloArray
 
 # Generar un array con el área del sépalo (longitud*anchura), utilizando operaciones matriciales
-# Crear un array vacío e inicializarlo a 0
 print iris_array[:,0] * iris_array[:,1]
 ```
 
@@ -244,7 +243,7 @@ print iris_array[ iris_array[:,0] > 2, 0]
 
 Podemos usar algunas funciones adicionales sobre objetos de tipo `ndarray`. Por ejemplo, las funciones [`numpy.mean`](http://docs.scipy.org/doc/numpy/reference/generated/numpy.mean.html) y [`numpy.std`](http://docs.scipy.org/doc/numpy/reference/generated/numpy.std.html) nos sirven para calcular la media y la desviación típica, respectivamente, de los valores contenidos en el `ndarray` que se pasa como argumento.
 
-Por último, podemos realizar operaciones matriciales con los `ndarray` de forma muy simple y optimizada. La función [`numpy.dot`](http://docs.scipy.org/doc/numpy/reference/generated/numpy.dot.html) multiplica dos `ndarray`, siempre que sus dimensiones sean compatibles. La función [`numpy.transpose`]
+Por último, podemos realizar operaciones matriciales con los `ndarray` de forma muy simple y optimizada. La función [`numpy.dot`](http://docs.scipy.org/doc/numpy/reference/generated/numpy.dot.html) multiplica dos `ndarray`, siempre que sus dimensiones sean compatibles. La función [`numpy.transpose`](http://docs.scipy.org/doc/numpy/reference/generated/numpy.transpose.html) nos devuelve la traspuesta de la matriz.
 ```python
 >>> a = [[1, 0], [0, 1]]
 >>> b = [[4, 1], [2, 2]]
