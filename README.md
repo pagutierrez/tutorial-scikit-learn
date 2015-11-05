@@ -31,7 +31,7 @@ Este breve tutorial explica algunos de los conceptos relacionados con la librer�
 
 # Características de `scikit-learn`
 
-- Esta librería se centra en el modelado de datos y no en cargar y manipular los dato, para lo que utilizaríamos [NumPy](http://www.numpy.org/) y [Pandas](http://pandas.pydata.org/). Algunas cosas que podemos hacer con `scikit-learn` son:
+- Esta librería se centra en el modelado de datos y no en cargar y manipular los datos, para lo que utilizaríamos [NumPy](http://www.numpy.org/) y [Pandas](http://pandas.pydata.org/). Algunas cosas que podemos hacer con `scikit-learn` son:
   - *Clustering*.
   - Validación cruzada.
   - *Datasets* de prueba.
@@ -53,7 +53,7 @@ Vamos a utilizar un ejemplo típico en *machine learning* que es la base de dato
 
 ## Lectura de datos
 
-Como ya hemos comentado, para la lectura de datos haremos uso de [Pandas](http://pandas.pydata.org/). Esta librería tiene un método `read_csv` que nos va a permitir leer los datos desde un fichero de texto `csv`. Veamos el código:
+Como ya hemos comentado, para la lectura de datos haremos uso de [Pandas](http://pandas.pydata.org/). Esta librería tiene un método `read_csv` que nos va a permitir leer los datos desde un fichero de texto `csv`. Para seguir el tutorial, abre y ejecuta el fichero [ejemplo_iris.py](ejemplo_iris.py). Veamos el código:
 ```python
 import pandas as pd
 import numpy as np
@@ -72,7 +72,7 @@ y leemos el dataset con:
 ```python
 iris = pd.read_csv('data/iris.csv', names = nombre_variables)
 ```
-`iris` es un objeto de la clase [`DataFrame`](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html) de `pandas`.
+`iris` es un objeto de la clase [`DataFrame`](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html) de `pandas`. También podríamos haber obviado el nombre de las columnas estableciendo `header=None`, de forma que `read_csv` le hubiera asignado un nombre por defecto.
 
 ## Inspección de datos
 
