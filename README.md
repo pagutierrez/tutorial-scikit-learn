@@ -295,7 +295,7 @@ Si nos proporcionan la base de datos completa para que hagamos nosotros las part
 
 ## Labores de preprocesamiento
 
-Sin embargo, `scikit-learn` no acepta cadenas como parámetros de las funciones, todo deben de ser números. Para ello, nos podemos valer del objeto [`sklearn.preprocessing.LabelEncoder`](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html), que nos transforma automáticamente de cadenas a números. La forma en que se utiliza es la siguiente:
+Sin embargo, `scikit-learn` no acepta cadenas como parámetros de las funciones, todo deben de ser números. Para ello, nos podemos valer del objeto [`sklearn.preprocessing.LabelEncoder`](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html), que nos transforma automáticamente las cadenas a números. La forma en que se utiliza es la siguiente:
 ```python
 label_e = preprocessing.LabelEncoder()
 label_e.fit(train_outputs_iris)
@@ -306,6 +306,7 @@ Como podéis observar, primero se crea el `LabelEncoder` y luego se "entrena" me
 - `Iris-setosa` -> 0
 - `Iris-versicolor` -> 1
 - `Iris-virginica` -> 2
+
 Una vez entrenado, utilizando el método `transform` del `LabelEncoder`, podremos transformar cualquier `ndarray` que queramos (en nuestro caso, tanto las salidas de entrenamiento como las de test, hubiéramos tenido un error si alguna de las etiquetas de test no estuviera en train). Esta estructura (método `fit` más método `transform` o `predict`) se repite en muchos de los objetos de `scikit-learn`.
 
 Hay muchas más tareas de preprocesamiento que se pueden hacer en `scikit-learn`. Consulta el paquete [`sklearn.preprocessing`](http://scikit-learn.org/stable/modules/classes.html#module-sklearn.preprocessing).
