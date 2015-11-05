@@ -337,7 +337,15 @@ print cm
 
 ## Configurar los parámetros de un clasificador
 
-Imagina que quieres configurar el número de vecinos más cercanos (`n_neighbors`), de forma que el porcentaje de patrones
+Imagina que quieres configurar el número de vecinos más cercanos (`n_neighbors`), de forma que la precisión en entrenamiento. Lo podríamos hacer de la siguiente forma:
+```python
+for nn in range(1,15):
+    knn = neighbors.KNeighborsClassifier(n_neighbors=nn)
+    knn.fit(train_inputs_iris, train_outputs_iris_encoded)
+    precisionTrain = knn.score(train_inputs_iris, train_outputs_iris_encoded)
+    precisionTest = knn.score(test_inputs_iris, test_outputs_iris_encoded)
+    print "%d vecinos: CCR train=%.2f, CCR test=%.2f" % (nn, precisionTrain*100, precisionTest*100)
+```
 
 # Referencias
 - Python como alternativa a R en *machine learning*. Mario Pérez Esteso. [Enlace a Github](https://github.com/MarioPerezEsteso/Python-Machine-Learning). [Enlace a Youtube](https://www.youtube.com/watch?v=8yz4gWt7Klk). 
