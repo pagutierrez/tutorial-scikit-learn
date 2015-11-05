@@ -47,7 +47,7 @@ Las principales ventajas de `scikit-learn` son las siguientes:
   - Desarrollo muy activo.
   - Comunidad.
 
-# Ejemplo de uso con el *dataset* `iris`
+# Ejemplos de uso con el *dataset* `iris`
 
 Vamos a utilizar un ejemplo típico en *machine learning* que es la base de datos `iris`.  En esta base de datos hay tres clases a predecir, que son tres especies distintas de la flor iris, de manera que, para cada flor, se extraen cuatro medidas o variables de entrada (longitud y ancho de los pétalos y los sépalos, en cm). Las tres especies a distinguir son iris *setosa*, iris *virginica* e iris *versicolor*.
 
@@ -261,6 +261,44 @@ array([[0, 2],
 ```
 
 **Ejercicio**: Prueba a imprimir la media y la desviación típica del áreas de aquellas flores que son de tipo *virginica*.
+
+## División de datos en entrenamiento y test
+
+Aunque a veces nos proporcionan los datos ya divididos en los conjuntos de entrenamiento y test, conviene saber como podríamos realizar esta división. El siguiente código muestra una función que divide los datos de forma aleatoria, utilizando operaciones *vectorizadas*:
+```python
+def dividir_ent_test(dataframe, porcentaje=0.6):
+    """ 
+    Función que divide un dataframe aleatoriamente en entrenamiento y en test.
+    Recibe los siguientes argumentos:
+    - dataframe: DataFrame que vamos a utilizar para extraer los datos
+    - porcentaje: porcentaje de patrones en entrenamiento
+    Devuelve:
+    - train: DataFrame con los datos de entrenamiento
+    - test: DataFrame con los datos de test
+    """
+    mascara = np.random.rand(len(dataframe)) < porcentaje
+    train = dataframe[mascara]
+    test = dataframe[~mascara]
+    return train, test
+
+iris_train, iris_test = dividir_ent_test(iris)
+```
+
+Ahora, podemos quedarnos con las columnas correspondientes a las variables de entrada (todas salvo la última) y la correspondiente a la variable de salida (en este caso, la última):
+```python
+train_inputs_iris = iris_train.values[:,0:-1]
+train_outputs_iris = iris_train.values[-1]
+test_inputs_iris = iris_test.values[:,0:-1]
+test_outputs_iris = iris_test.values[-1]
+print train_inputs_iris.shape
+```
+
+Sin embargo, `scikit-learn` no acepta cadenas como parámetros de las funciones, todo deben de ser números. Es decir, tendríamos que hacer la siguiente conversión:
+- `Iris-setosa` -> 0
+- `Iris-versicolor` -> 1
+- `Iris-virginica` -> 2
+
+
 
 # Referencias
 - Python como alternativa a R en *machine learning*. Mario Pérez Esteso. [Enlace a Github](https://github.com/MarioPerezEsteso/Python-Machine-Learning). [Enlace a Youtube](https://www.youtube.com/watch?v=8yz4gWt7Klk). 
