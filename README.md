@@ -287,27 +287,57 @@ iris_train, iris_test = dividir_ent_test(iris)
 Ahora, podemos quedarnos con las columnas correspondientes a las variables de entrada (todas salvo la última) y la correspondiente a la variable de salida (en este caso, la última):
 ```python
 train_inputs_iris = iris_train.values[:,0:-1]
-train_outputs_iris = iris_train.values[-1]
+train_outputs_iris = iris_train.values[:,-1]
 test_inputs_iris = iris_test.values[:,0:-1]
-test_outputs_iris = iris_test.values[-1]
+test_outputs_iris = iris_test.values[:,-1]
 print train_inputs_iris.shape
 ```
 
-Sin embargo, `scikit-learn` no acepta cadenas como parámetros de las funciones, todo deben de ser números. Es decir, tendríamos que hacer la siguiente conversión:
+## Labores de preprocesamiento
+
+Sin embargo, `scikit-learn` no acepta cadenas como parámetros de las funciones, todo deben de ser números. Para ello, nos podemos valer del objeto [`sklearn.preprocessing.LabelEncoder`](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html), que nos transforma automáticamente de cadenas a números. La forma en que se utiliza es la siguiente:
+```python
+label_e = preprocessing.LabelEncoder()
+label_e.fit(train_outputs_iris)
+train_outputs_iris_encoded = label_e.transform(train_outputs_iris)
+test_outputs_iris_encoded = label_e.transform(test_outputs_iris)
+```
+Como podéis observar, primero se crea el `LabelEncoder` y luego se "entrena" mediante el método `fit`. Para un `LabelEncoder`, "entrenar" el modelo es decidir el mapeo que vimos anteriormente, en este caso:
 - `Iris-setosa` -> 0
 - `Iris-versicolor` -> 1
 - `Iris-virginica` -> 2
+Una vez entrenado, utilizando el método `transform` del `LabelEncoder`, podremos transformar cualquier `ndarray` que queramos (en nuestro caso, tanto las salidas de entrenamiento como las de test, hubiéramos tenido un error si alguna de las etiquetas de test no estuviera en train). Esta estructura (método `fit` más método `transform` o `predict`) se repite en muchos de los objetos de `scikit-learn`.
 
-Para ello, nos podemos valer del objeto [`sklearn.preprocessing.LabelEncoder`](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html), que nos transforma automáticamente de cadenas a números. La forma en que se utiliza es la siguiente:
+Hay muchas más tareas de preprocesamiento que se pueden hacer en `scikit-learn`. Consulta el paquete [`sklearn.preprocessing`](http://scikit-learn.org/stable/modules/classes.html#module-sklearn.preprocessing).
+
+## Crear y evaluar un clasificador
+
+A continuación, vamos a crear un modelo de clasificación y a obtener su matriz de confusión. Vamos a utilizar el clasificador [KNeighborsClassifier](http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html), que clasifica cada patrón asignándole la clase mayoritaria según los `k` vecinos más cercanos al patrón a clasificar. Consulta siempre la documentación de cada objeto para ver los parámetros del algoritmo (en este caso, el parámetro decisivo es `n_neighbors`). Veamos como se realizaría el entrenamiento:
 ```python
-label_e_train = preprocessing.LabelEncoder()
-label_e_train.fit(train_outputs_iris)
-train_outputs_iris_encoded = label_e_train.transform(train_outputs_iris)
-label_e_test = preprocessing.LabelEncoder()
-label_e_test.fit(test_outputs_iris)
-test_outputs_iris_encoded = label_e_test.transform(test_outputs_iris)
+knn = neighbors.KNeighborsClassifier()
+knn.fit(train_inputs_iris, train_outputs_iris_encoded)
+print knn
+```
+Ya tenemos el modelo entrenado. Este modelo es de tipo *lazy*, en el sentido de que no existen parámetros a ajustar durante el entrenamiento. Lo único que hacemos es acomodar las entradas en una serie de estructuras de datos que faciliten el cálculo de distancias a la hora de predecir la etiqueta de datos nuevos. Si ahora queremos predecir las etiquetas de test, podemos hacer uso del método `predict`, que aplica el modelo ya entrenado a datos nuevos:
+```python
+prediccion_test = knn.predict(test_inputs_iris)
+print prediccion_test
+```
+Si queremos saber que tan buena ha sido la clasificación, todo modelo de clasificación o regresión en `scikit-learn` tiene un método `score` que nos devuelve la bondad del modelo con respecto a los valores esperados, a partir de las entradas suministradas. La medida por defecto utilizada en [KNeighborsClassifier](http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html) es el porcentaje de patrones bien clasificados (CCR o *accuracy*). La función se utiliza de la siguiente forma (internamente, esta función llama a `predict`):
+```python
+precision = knn.score(test_inputs_iris, test_outputs_iris_encoded)
 ```
 
+Para imprimir la matriz de confusión de unas predicciones, podemos utilizar la función [`sklearn.metrics.confusion_matrix`](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.confusion_matrix.html#sklearn.metrics.confusion_matrix), que nos va devolver la matriz ya formada:
+```python
+from sklearn.metrics import confusion_matrix
+cm = confusion_matrix(test_outputs_iris_encoded, prediccion_test)
+print cm
+```
+
+## Configurar los parámetros de un clasificador
+
+Imagina que quieres configurar el número de vecinos más cercanos (`n_neighbors`), de forma que el porcentaje de patrones
 
 # Referencias
 - Python como alternativa a R en *machine learning*. Mario Pérez Esteso. [Enlace a Github](https://github.com/MarioPerezEsteso/Python-Machine-Learning). [Enlace a Youtube](https://www.youtube.com/watch?v=8yz4gWt7Klk). 
