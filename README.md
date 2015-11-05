@@ -344,7 +344,7 @@ for nn in range(1,15):
     knn.fit(train_inputs_iris, train_outputs_iris_encoded)
     precisionTrain = knn.score(train_inputs_iris, train_outputs_iris_encoded)
     precisionTest = knn.score(test_inputs_iris, test_outputs_iris_encoded)
-    print "%d vecinos: CCR train=%.2f, CCR test=%.2f" % (nn, precisionTrain*100, precisionTest*100)
+    print "%d vecinos: CCR train=%.2f%%, CCR test=%.2f%%" % (nn, precisionTrain*100, precisionTest*100)
 ```
 
 # Referencias
