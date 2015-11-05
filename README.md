@@ -140,8 +140,8 @@ Los DataFrame [`DataFrame`](http://pandas.pydata.org/pandas-docs/stable/generate
 ```python
 print iris['longitud_sepalo']
 print iris[nombre_variables[0]]
-irisArray = iris.values
-print irisArray[:,0]
+iris_array = iris.values
+print iris_array[:,0]
 ```
 La sintaxis de indexación en un [`ndarray`](http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html) es la siguiente:
 - `array[i,j]`: accede al valor de la fila `i` columna `j`.
@@ -151,14 +151,14 @@ La sintaxis de indexación en un [`ndarray`](http://docs.scipy.org/doc/numpy/ref
 - `array[:,i:j]`: devuelve otro `ndarray` con la submatriz correspondiente a **todas** las filas y a las columnas desde la `k` hasta la `l`.
 De esta forma:
 ```python
->>> irisArray[0:2,2:4]
+>>> iris_array[0:2,2:4]
 array([[1.4, 0.2],
        [1.4, 0.2]], dtype=object)
 >>> iris[0:2][nombre_variables[2:4]]
    longitud_petalo  ancho_petalo
 0              1.4           0.2
 1              1.4           0.2
->>> irisArray[1:6,:]
+>>> iris_array[1:6,:]
 array([[4.9, 3.0, 1.4, 0.2, 'Iris-setosa'],
        [4.7, 3.2, 1.3, 0.2, 'Iris-setosa'],
        [4.6, 3.1, 1.5, 0.2, 'Iris-setosa'],
@@ -180,19 +180,19 @@ Imaginemos que queremos imprimir el área de sépalo de todas las flores. Compar
 ```python
 # Generar un array con el área del sépalo (longitud*anchura), utilizando un for
 # Crear un array vacío
-areaSepaloArray = np.empty(irisArray.shape[0]) # OJO paréntesis
-for i in range(0,irisArray.shape[0]):
-    areaSepaloArray[i] = irisArray[i,0] * irisArray[i,1]
+areaSepaloArray = np.empty(iris_array.shape[0]) # OJO paréntesis
+for i in range(0,iris_array.shape[0]):
+    areaSepaloArray[i] = iris_array[i,0] * iris_array[i,1]
 print areaSepaloArray
 
 # Generar un array con el área del sépalo (longitud*anchura), utilizando operaciones matriciales
 # Crear un array vacío e inicializarlo a 0
-print irisArray[:,0] * irisArray[:,1]
+print iris_array[:,0] * iris_array[:,1]
 ```
 
 Es más, los `ndarray` permiten aplicar operaciones lógicas, que devuelven otro `ndarray` con el resultado de realizar esas operaciones lógicas:
 ```python
->>> irisArray[:,2] > 5
+>>> iris_array[:,2] > 5
 array([False, False, False, False, False, False, False, False, False,
        False, False, False, False, False, False, False, False, False,
        False, False, False, False, False, False, False, False, False,
@@ -213,7 +213,7 @@ array([False, False, False, False, False, False, False, False, False,
 ```
 A su vez, este `ndarray` se puede usar para indexar el `ndarray` original:
 ```python
->>> irisArray[irisArray[:,2] > 5,4]
+>>> iris_array[iris_array[:,2] > 5,4]
 array(['Iris-versicolor', 'Iris-virginica', 'Iris-virginica',
        'Iris-virginica', 'Iris-virginica', 'Iris-virginica',
        'Iris-virginica', 'Iris-virginica', 'Iris-virginica',
@@ -232,16 +232,19 @@ array(['Iris-versicolor', 'Iris-virginica', 'Iris-virginica',
 Imagina que ahora queremos imprimir la longitud de sépalo de aquellas flores cuya longitud de sépalo es mayor que 2. Compara la versión con `for` y la versión "vectorizada":
 ```python
 # Imprimir las longitudes de sépalo mayores que 2, utilizando un for
-irisArray = iris.values
-for i in range(0,irisArray.shape[0]):
-    valorSepalo = irisArray[i,0]
+iris_array = iris.values
+for i in range(0,iris_array.shape[0]):
+    valorSepalo = iris_array[i,0]
     if valorSepalo > 2:
         print valorSepalo
         
 # Imprimir las longitudes de sépalo mayores que 2, utilizando operaciones matriciales
-print irisArray[ irisArray[:,0] > 2, 0]
+print iris_array[ iris_array[:,0] > 2, 0]
 ```
-
+Podemos usar algunas funciones adicionales sobre objetos de tipo `ndarray`. Por ejemplo, el siguiente código imprime la media y la desviación típica del área de las flores de tipo `Iris-virginica`:
+```python
+d
+```
 
 # Referencias
 - Python como alternativa a R en *machine learning*. Mario Pérez Esteso. [Enlace a Github](https://github.com/MarioPerezEsteso/Python-Machine-Learning). [Enlace a Youtube](https://www.youtube.com/watch?v=8yz4gWt7Klk). 
