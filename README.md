@@ -240,6 +240,7 @@ for i in range(0,iris_array.shape[0]):
         
 # Imprimir las longitudes de sépalo mayores que 2, utilizando operaciones matriciales
 print iris_array[ iris_array[:,0] > 2, 0]
+```
 
 Podemos usar algunas funciones adicionales sobre objetos de tipo `ndarray`. Por ejemplo, las funciones [`numpy.mean`](http://docs.scipy.org/doc/numpy/reference/generated/numpy.mean.html) y [`numpy.std`](http://docs.scipy.org/doc/numpy/reference/generated/numpy.std.html) nos sirven para calcular la media y la desviación típica, respectivamente, de los valores contenidos en el `ndarray` que se pasa como argumento.
 
