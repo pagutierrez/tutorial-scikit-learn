@@ -353,6 +353,7 @@ for nn in range(1,15):
 Debes utilizar la base de datos `digits` para entrenar dos modelos supervisados de clasificación:
 - Uno basado en los k vecinos más cercanos: [KNeighborsClassifier](http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html).
 - Otro basado en un modelo lineal. Vamos a utilizar el modelo de regresión logística: [LogisticRegression](http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html).
+
 La base de datos está disponible en la UCI, bajo el nombre [*Optical Recognition of Handwritten Digits Data Set*](http://archive.ics.uci.edu/ml/datasets/Optical+Recognition+of+Handwritten+Digits). Bájala y preprocésala para realizar el entrenamiento. Debes normalizar los datos entre 0 y 1, y utilizar un 90% de los datos para entrenar y el 10% restante para evaluar el entrenamiento. Realiza las particiones de forma estratificada.
 
 # Referencias
