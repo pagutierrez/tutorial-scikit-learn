@@ -348,7 +348,7 @@ for nn in range(1,15):
     print "%d vecinos: CCR train=%.2f%%, CCR test=%.2f%%" % (nn, precisionTrain*100, precisionTest*100)
 ```
 
-# Ejercicio a realizar
+# Ejercicio voluntario a realizar
 
 Debes utilizar la base de datos `digits` para entrenar dos modelos supervisados de clasificación:
 - Uno basado en los k vecinos más cercanos: [KNeighborsClassifier](http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html).
