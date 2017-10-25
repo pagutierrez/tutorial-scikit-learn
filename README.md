@@ -3,10 +3,25 @@ Este breve tutorial explica algunos de los conceptos relacionados con la librer�
 
 Se incluyen dos versiones:
 
-- [Versión estática](tutorial.md)
 - [Cuaderno Jupyter](tutorial.ipynb)
+- [Versión estática](https://rawgit.com/pagutierrez/tutorial-scikit-learn/master/tutorial.html)
 
-Las instrucciones de instalación de Python con las librerías científicas necesarias están descritas en:
+Para ejecutar el código tendrás que instalar la última versión de `scikit-learn` (0.19):
+```bash
+pip install --user scikit-learn
+```
+
+Lo primero que deberías hacer es clonar el repositorio:
+```bash
+git clone https://github.com/pagutierrez/tutorial-scikit-learn
+```
+
+Para lanzar jupyter deberás ejecutar el siguiente comando:
+```bash
+jupyter notebook
+```
+
+Existen instrucciones de instalación de Python con las librerías científicas en:
 
 - [Tutorial completo sobre scikit-learn](https://github.com/pagutierrez/tutorial-sklearn)
 
