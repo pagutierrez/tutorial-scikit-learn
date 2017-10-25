@@ -25,4 +25,4 @@ Existen instrucciones de instalación de Python con las librerías científicas 
 
 - [Tutorial completo sobre scikit-learn](https://github.com/pagutierrez/tutorial-sklearn)
 
-Te recomiendas que sigas el [tutorial completo](https://github.com/pagutierrez/tutorial-sklearn) para aprender más sobre `scikit-learn`.
+Te recomiendo que sigas el [tutorial completo](https://github.com/pagutierrez/tutorial-sklearn) para aprender más sobre `scikit-learn`.
