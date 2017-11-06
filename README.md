@@ -6,9 +6,11 @@ Se incluyen dos versiones:
 - [Cuaderno Jupyter](tutorial.ipynb)
 - [Versión estática](https://rawgit.com/pagutierrez/tutorial-scikit-learn/master/tutorial.html)
 
-Para ejecutar el código tendrás que instalar la última versión de `scikit-learn` (0.19):
+Para ejecutar el código tendrás que instalar la última versión de `scikit-learn` (0.19.1), `pandas` (0.21), `click` (0.19),:
 ```bash
-pip install --user scikit-learn
+pip install pandas --user --upgrade
+pip install click --user --upgrade
+pip install scikit-learn --user --upgrade
 ```
 
 Lo primero que deberías hacer es clonar el repositorio:
