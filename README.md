@@ -11,6 +11,7 @@ Para ejecutar el código tendrás que instalar la última versión de `scikit-le
 pip install click --user --upgrade
 pip install scikit-learn --user --upgrade
 ```
+Nota: si haces este tutorial fuera del entorno de la UCO, puede no usar la opción `--user`
 
 Lo primero que deberías hacer es clonar el repositorio:
 ```bash
