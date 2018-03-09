@@ -18,8 +18,9 @@ Lo primero que deberías hacer es clonar el repositorio:
 git clone https://github.com/pagutierrez/tutorial-scikit-learn
 ```
 
-Para lanzar jupyter deberás ejecutar el siguiente comando:
+Ahora, desde la carpeta del repositorio, lanza `jupyter` mediante:
 ```bash
+cd tutorial-scikit-learn/
 jupyter notebook
 ```
 
