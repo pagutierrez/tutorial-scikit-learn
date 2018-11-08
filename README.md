@@ -15,7 +15,7 @@ Nota: si haces este tutorial fuera del entorno de la UCO, puede no usar la opci√
 
 Lo primero que deber√≠as hacer es clonar el repositorio:
 ```bash
-git clone https://github.com/pagutierrez/tutorial-scikit-learn
+git clone https://github.com/ayrna/tutorial-scikit-learn-IMC.git
 ```
 
 Ahora, desde la carpeta del repositorio, lanza `jupyter` mediante:
