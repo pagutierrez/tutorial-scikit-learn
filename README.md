@@ -20,7 +20,7 @@ git clone https://github.com/ayrna/tutorial-scikit-learn-IMC.git
 
 Ahora, desde la carpeta del repositorio, lanza `jupyter` mediante:
 ```bash
-cd tutorial-scikit-learn/
+cd tutorial-scikit-learn-IMC/
 jupyter notebook
 ```
 
