@@ -6,12 +6,12 @@ Se incluyen dos versiones:
 - [Cuaderno Jupyter](tutorial.ipynb)
 - [Versión estática](https://rawgit.com/pagutierrez/tutorial-scikit-learn/master/tutorial.html)
 
-Para ejecutar el código tendrás que instalar la última versión de `scikit-learn` (0.19.1), `click` (6.7),:
+Para ejecutar el código tendrás que instalar la última versión de `scikit-learn` (0.21.3) y de `click` (7.0),:
 ```bash
 pip install click --user --upgrade
 pip install scikit-learn --user --upgrade
 ```
-Nota: si haces este tutorial fuera del entorno de la UCO, puede no usar la opción `--user`
+Nota: si haces este tutorial fuera del entorno de la UCO, no es necesario utilizar la opción `--user`, ya que ésta sirve para instalar las bibliotecas en la carpeta de usuario, en lugar de hacerlo a nivel global (que requiere privilegios de administración).
 
 Lo primero que deberías hacer es clonar el repositorio:
 ```bash
@@ -24,8 +24,7 @@ cd tutorial-scikit-learn-IMC/
 jupyter notebook
 ```
 
-Existen instrucciones de instalación de Python con las librerías científicas en:
+Si no aparece de forma automática, puede que tengas que abrir una navegador e introducir la dirección indicada (que será del tipo `http://localhost:8888/?token=...`). Si estáis usando vuestro portátil, existen instrucciones de instalación de Python con las librerías científicas en:
+- [Tutorial completo sobre scikit-learn](https://github.com/ayrna/taller-sklearn-asl-2019)
 
-- [Tutorial completo sobre scikit-learn](https://github.com/pagutierrez/tutorial-sklearn)
-
-Te recomiendo que sigas el [tutorial completo](https://github.com/pagutierrez/tutorial-sklearn) para aprender más sobre `scikit-learn`.
+Te recomiendo que sigas el [tutorial completo](https://github.com/ayrna/taller-sklearn-asl-2019) para aprender más sobre `scikit-learn`.
