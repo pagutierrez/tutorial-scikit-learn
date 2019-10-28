@@ -24,7 +24,11 @@ cd tutorial-scikit-learn-IMC/
 jupyter notebook
 ```
 
-Si no aparece de forma automática, puede que tengas que abrir una navegador e introducir la dirección indicada (que será del tipo `http://localhost:8888/?token=...`). Si estáis usando vuestro portátil, existen instrucciones de instalación de Python con las librerías científicas en:
+Si no aparece de forma automática, puede que tengas que abrir una navegador e introducir la dirección indicada (que será del tipo `http://localhost:8888/?token=...`). Una vez iniciada la interfaz de Jupyter abre el fichero `tutorial.ipynb`.
+
+Si estáis usando vuestro portátil, existen instrucciones de instalación de Python con las librerías científicas en:
 - [Tutorial completo sobre scikit-learn](https://github.com/ayrna/taller-sklearn-asl-2019)
+
+En cualquier caso, si tenéis cualquier problema con Jupyter, podéis acceder a la [salida del tutorial ya ejecutado](tutorial.md).
 
 Te recomiendo que sigas el [tutorial completo](https://github.com/ayrna/taller-sklearn-asl-2019) para aprender más sobre `scikit-learn`.
