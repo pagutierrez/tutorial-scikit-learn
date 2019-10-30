@@ -177,7 +177,7 @@ ax.plot_surface(xgrid, ygrid, im, cmap=plt.cm.viridis, cstride=2, rstride=2, lin
 
 
 
-<div id='d464c71a-9b0b-4f48-8f8c-d9c85b94dedd'></div>
+<div id='ea2f6bcf-4409-4618-8a7a-9f403f11bafb'></div>
 
 
 
@@ -185,7 +185,7 @@ ax.plot_surface(xgrid, ygrid, im, cmap=plt.cm.viridis, cstride=2, rstride=2, lin
 
 
 
-<div id='ae4b9e0d-52e3-4324-be18-514c0b79d4cd'></div>
+<div id='6ae5d831-6570-4b15-becf-c73738714509'></div>
 
 
 Hay muchísimos tipos de gráficos disponibles. Una forma útila de explorarlos es mirar la [galería de matplotlib](http://matplotlib.org/gallery.html).
@@ -237,7 +237,7 @@ plt.show()
 
 
 
-<div id='98d5816c-1c31-4f6f-b8d9-c4bc6dabb95d'></div>
+<div id='69f91815-0197-4e05-a70b-4d85472a30e0'></div>
 
 
 
@@ -245,7 +245,7 @@ plt.show()
 
 
 
-<div id='0d9eed8f-23bf-42f7-9551-2f69368c9022'></div>
+<div id='a26d7d70-d207-4d9a-88e9-57ac73c73e27'></div>
 
 
 # Ejemplos de uso con el *dataset* `iris`
@@ -1255,7 +1255,7 @@ test_outputs_iris = iris_test.values[:,-1]
 print(train_inputs_iris.shape)
 ```
 
-    (89, 4)
+    (96, 4)
 
 
 Si nos proporcionan la base de datos completa para que hagamos nosotros las particiones, todas las clases y funciones del módulo [`sklearn.cross_validation`](http://scikit-learn.org/stable/modules/cross_validation.html) de `scikit-learn` nos pueden facilitar mucho la labor.
@@ -1308,10 +1308,13 @@ Ya tenemos el modelo entrenado. Este modelo es de tipo *lazy*, en el sentido de 
 ```python
 prediccion_test = knn.predict(test_inputs_iris)
 print(prediccion_test)
+print(test_outputs_iris_encoded)
 ```
 
-    [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1
-     2 2 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2]
+    [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 2 2 2 2
+     2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2]
+    [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2
+     2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2]
 
 
 Si queremos saber cómo de buena ha sido la clasificación, todo modelo de clasificación o regresión en `scikit-learn` tiene un método `score` que nos devuelve la bondad del modelo con respecto a los valores esperados, a partir de las entradas suministradas. La medida por defecto utilizada en [KNeighborsClassifier](http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html) es el porcentaje de patrones bien clasificados (CCR o *accuracy*). La función se utiliza de la siguiente forma (internamente, esta función llama a `predict`):
@@ -1325,7 +1328,7 @@ precision
 
 
 
-    0.9672131147540983
+    0.9814814814814815
 
 
 
@@ -1339,7 +1342,7 @@ np.mean(prediccion_test == test_outputs_iris_encoded)
 
 
 
-    0.9672131147540983
+    0.9814814814814815
 
 
 
@@ -1352,9 +1355,9 @@ cm = confusion_matrix(test_outputs_iris_encoded, prediccion_test)
 print(cm)
 ```
 
-    [[25  0  0]
-     [ 0 15  2]
-     [ 0  0 19]]
+    [[18  0  0]
+     [ 0 14  1]
+     [ 0  0 21]]
 
 
 ## Configurar los parámetros de un clasificador
@@ -1371,20 +1374,20 @@ for nn in range(1,15):
     print("%d vecinos: \tCCR train = %.2f%%, \tCCR test = %.2f%%" % (nn, precisionTrain*100, precisionTest*100))
 ```
 
-    1 vecinos: 	CCR train = 100.00%, 	CCR test = 95.08%
-    2 vecinos: 	CCR train = 97.75%, 	CCR test = 96.72%
-    3 vecinos: 	CCR train = 96.63%, 	CCR test = 96.72%
-    4 vecinos: 	CCR train = 96.63%, 	CCR test = 98.36%
-    5 vecinos: 	CCR train = 97.75%, 	CCR test = 96.72%
-    6 vecinos: 	CCR train = 97.75%, 	CCR test = 96.72%
-    7 vecinos: 	CCR train = 97.75%, 	CCR test = 95.08%
-    8 vecinos: 	CCR train = 98.88%, 	CCR test = 95.08%
-    9 vecinos: 	CCR train = 98.88%, 	CCR test = 95.08%
-    10 vecinos: 	CCR train = 98.88%, 	CCR test = 96.72%
-    11 vecinos: 	CCR train = 97.75%, 	CCR test = 96.72%
-    12 vecinos: 	CCR train = 98.88%, 	CCR test = 95.08%
-    13 vecinos: 	CCR train = 98.88%, 	CCR test = 95.08%
-    14 vecinos: 	CCR train = 98.88%, 	CCR test = 95.08%
+    1 vecinos: 	CCR train = 100.00%, 	CCR test = 98.15%
+    2 vecinos: 	CCR train = 95.83%, 	CCR test = 98.15%
+    3 vecinos: 	CCR train = 94.79%, 	CCR test = 98.15%
+    4 vecinos: 	CCR train = 94.79%, 	CCR test = 98.15%
+    5 vecinos: 	CCR train = 95.83%, 	CCR test = 98.15%
+    6 vecinos: 	CCR train = 95.83%, 	CCR test = 98.15%
+    7 vecinos: 	CCR train = 94.79%, 	CCR test = 100.00%
+    8 vecinos: 	CCR train = 96.88%, 	CCR test = 100.00%
+    9 vecinos: 	CCR train = 94.79%, 	CCR test = 100.00%
+    10 vecinos: 	CCR train = 96.88%, 	CCR test = 98.15%
+    11 vecinos: 	CCR train = 97.92%, 	CCR test = 100.00%
+    12 vecinos: 	CCR train = 97.92%, 	CCR test = 100.00%
+    13 vecinos: 	CCR train = 96.88%, 	CCR test = 100.00%
+    14 vecinos: 	CCR train = 94.79%, 	CCR test = 100.00%
 
 
 # Ejercicio propuesto para realizar
@@ -1393,7 +1396,7 @@ Debes utilizar la base de datos `wine` para entrenar dos modelos supervisados de
 - Uno basado en los k vecinos más cercanos: [KNeighborsClassifier](http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html).
 - Otro basado en un modelo lineal. Vamos a utilizar el modelo de regresión logística: [LogisticRegression](http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html).
 
-La base de datos está disponible en la UCI, bajo el nombre [*Wine dataset*](http://archive.ics.uci.edu/ml/datasets/Wine). Bájala y preprocésala para realizar el entrenamiento. Utiliza las particiones de entrenamiento y test incluidas en el sitio web de la UCI. Tienes que normalizar todas las variables de entrada para que queden en el intervalo `[0,1]` (consulta información sobre [MinMaxScaler](http://scikit-learn.org/stable/modules/preprocessing.html#scaling-features-to-a-range)). Intenta ajustar lo mejor posibles los parámetros de los clasificadores.
+La base de datos está disponible en la UCI, bajo el nombre [*Wine dataset*](http://archive.ics.uci.edu/ml/datasets/Wine). Bájala y preprocésala para realizar el entrenamiento. Divide los datos en 60% de entrenamiento y 40% de test. Tienes que normalizar todas las variables de entrada para que queden en el intervalo `[0,1]` (consulta información sobre [MinMaxScaler](http://scikit-learn.org/stable/modules/preprocessing.html#scaling-features-to-a-range)). Intenta ajustar lo mejor posibles los parámetros de los clasificadores.
 
 # Referencias
 Este tutorial se ha basado en gran parte en el siguiente material:
