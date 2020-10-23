@@ -40,6 +40,8 @@ Si estáis usando vuestro portátil, existen instrucciones de instalación de Py
 
 En cualquier caso, si tenéis cualquier problema con Jupyter, podéis acceder a la [salida del tutorial ya ejecutado](tutorial.md).
 
+Otra posibilidad es utilizar [Google Colab](https://colab.research.google.com/), que pone a vuestra disposición los recursos computacionales (CPU, GPU, TPU..) para ejecutar cuadernos de Jupyter utilizando las librerías científicas más habituales (`scikit-learn`, `TensorFlow`...). Tan solo necesitáis un cuenta de Google.
+
 Te recomiendo que sigas el [tutorial completo](https://github.com/ayrna/taller-sklearn-asl-2019) para aprender más sobre `scikit-learn`.
 
 # `scikit-learn` tutorial for IMC
@@ -80,5 +82,7 @@ If you are using your own computer, you may have problems with the scientific li
 - [Complete tutorial about scikit-learn](https://github.com/amueller/scipy-2018-sklearn)
 
 In any case, if you are experiencing problems with Jupyter, use the [output of the tutorial](tutorialEn.md).
+
+Another possibility is to use [Google Colab](https://colab.research.google.com/), which makes available the computational resources (CPU, GPU, TPU..) to run Jupyter notebooks using the most common scientific libraries (`scikit-learn`, `TensorFlow`...). You will only need a Google account.
 
 It is recommended to follow the [complete tutorial](https://github.com/amueller/scipy-2018-sklearn) to learn more about `scikit-learn`.
