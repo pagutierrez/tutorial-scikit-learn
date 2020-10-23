@@ -7,7 +7,7 @@ Este breve tutorial explica algunos de los conceptos relacionados con la librer�
 Se incluyen dos versiones:
 
 - [Cuaderno Jupyter](tutorial.ipynb)
-- [Versión estática](https://rawgit.com/pagutierrez/tutorial-scikit-learn/master/tutorial.html)
+- [Versión estática](tutorial.md)
 
 Para ejecutar el código tendrás que instalar la última versión de `scikit-learn` (0.21.3) y de `click` (7.0),:
 ```bash
@@ -37,12 +37,12 @@ En cualquier caso, si tenéis cualquier problema con Jupyter, podéis acceder a 
 Te recomiendo que sigas el [tutorial completo](https://github.com/ayrna/taller-sklearn-asl-2019) para aprender más sobre `scikit-learn`.
 
 # `scikit-learn` tutorial for IMC
-Este breve tutorial explica algunos de los conceptos relacionados con la librería `scikit-learn` de python.
+This brief tutorial explains some concepts related with the Python library `scikit-learn`.
 
-Se incluyen dos versiones:
+Two versions are included:
 
-- [Cuaderno Jupyter](tutorial.ipynb)
-- [Versión estática](https://rawgit.com/pagutierrez/tutorial-scikit-learn/master/tutorial.html)
+- [Jupyter notebook](tutorialEn.ipynb)
+- [Static version](tutorialEn.md)
 
 Para ejecutar el código tendrás que instalar la última versión de `scikit-learn` (0.21.3) y de `click` (7.0),:
 ```bash

@@ -1,4 +1,3 @@
-
 Este breve tutorial explica algunos de los conceptos relacionados con la librería `scikit-learn` de python. 
 
 # ¿Qué es python?
@@ -17,6 +16,7 @@ Este breve tutorial explica algunos de los conceptos relacionados con la librer�
   - [Sublime Text](http://www.sublimetext.com/)
   - [PyCharm](https://www.jetbrains.com/pycharm/)
   - [Spyder](https://github.com/spyder-ide/spyder)
+  - [Visual Studio Code](https://code.visualstudio.com/)
 
 # `scikit-learn`
 
@@ -164,7 +164,7 @@ plt.contour(im);
 
 ```python
 # El modo "notebook" en lugar de inline permite que los plots sean interactivos
-%matplotlib notebook
+#%matplotlib inline
 # Plot en 3D
 from mpl_toolkits.mplot3d import Axes3D
 ax = plt.axes(projection='3d')
@@ -173,19 +173,7 @@ ax.plot_surface(xgrid, ygrid, im, cmap=plt.cm.viridis, cstride=2, rstride=2, lin
 ```
 
 
-    <IPython.core.display.Javascript object>
-
-
-
-<div id='ea2f6bcf-4409-4618-8a7a-9f403f11bafb'></div>
-
-
-
-    <IPython.core.display.Javascript object>
-
-
-
-<div id='6ae5d831-6570-4b15-becf-c73738714509'></div>
+![png](tutorial_files/tutorial_26_0.png)
 
 
 Hay muchísimos tipos de gráficos disponibles. Una forma útila de explorarlos es mirar la [galería de matplotlib](http://matplotlib.org/gallery.html).
@@ -233,19 +221,7 @@ plt.show()
 ```
 
 
-    <IPython.core.display.Javascript object>
-
-
-
-<div id='69f91815-0197-4e05-a70b-4d85472a30e0'></div>
-
-
-
-    <IPython.core.display.Javascript object>
-
-
-
-<div id='a26d7d70-d207-4d9a-88e9-57ac73c73e27'></div>
+![png](tutorial_files/tutorial_28_0.png)
 
 
 # Ejemplos de uso con el *dataset* `iris`
@@ -267,7 +243,7 @@ y leemos el dataset con:
 
 
 ```python
-iris = pd.read_csv('data/iris.csv', names = nombre_variables)
+iris = pd.read_csv('https://raw.githubusercontent.com/ayrna/tutorial-scikit-learn-IMC/master/data/iris.csv', names = nombre_variables)
 ```
 
 `iris` es un objeto de la clase [`DataFrame`](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html) de `pandas`. También podríamos haber obviado el nombre de las columnas estableciendo `header=None`, de forma que `read_csv` le hubiera asignado un nombre por defecto.
@@ -395,57 +371,7 @@ print(iris['longitud_sepalo'])
     2      4.7
     3      4.6
     4      5.0
-    5      5.4
-    6      4.6
-    7      5.0
-    8      4.4
-    9      4.9
-    10     5.4
-    11     4.8
-    12     4.8
-    13     4.3
-    14     5.8
-    15     5.7
-    16     5.4
-    17     5.1
-    18     5.7
-    19     5.1
-    20     5.4
-    21     5.1
-    22     4.6
-    23     5.1
-    24     4.8
-    25     5.0
-    26     5.0
-    27     5.2
-    28     5.2
-    29     4.7
           ... 
-    120    6.9
-    121    5.6
-    122    7.7
-    123    6.3
-    124    6.7
-    125    7.2
-    126    6.2
-    127    6.1
-    128    6.4
-    129    7.2
-    130    7.4
-    131    7.9
-    132    6.4
-    133    6.3
-    134    6.1
-    135    7.7
-    136    6.3
-    137    6.4
-    138    6.0
-    139    6.9
-    140    6.7
-    141    6.9
-    142    5.8
-    143    6.8
-    144    6.7
     145    6.7
     146    6.3
     147    6.5
@@ -464,57 +390,7 @@ print(iris[nombre_variables[0]])
     2      4.7
     3      4.6
     4      5.0
-    5      5.4
-    6      4.6
-    7      5.0
-    8      4.4
-    9      4.9
-    10     5.4
-    11     4.8
-    12     4.8
-    13     4.3
-    14     5.8
-    15     5.7
-    16     5.4
-    17     5.1
-    18     5.7
-    19     5.1
-    20     5.4
-    21     5.1
-    22     4.6
-    23     5.1
-    24     4.8
-    25     5.0
-    26     5.0
-    27     5.2
-    28     5.2
-    29     4.7
           ... 
-    120    6.9
-    121    5.6
-    122    7.7
-    123    6.3
-    124    6.7
-    125    7.2
-    126    6.2
-    127    6.1
-    128    6.4
-    129    7.2
-    130    7.4
-    131    7.9
-    132    6.4
-    133    6.3
-    134    6.1
-    135    7.7
-    136    6.3
-    137    6.4
-    138    6.0
-    139    6.9
-    140    6.7
-    141    6.9
-    142    5.8
-    143    6.8
-    144    6.7
     145    6.7
     146    6.3
     147    6.5
@@ -1255,10 +1131,30 @@ test_outputs_iris = iris_test.values[:,-1]
 print(train_inputs_iris.shape)
 ```
 
-    (96, 4)
+    (87, 4)
 
 
-Si nos proporcionan la base de datos completa para que hagamos nosotros las particiones, todas las clases y funciones del módulo [`sklearn.cross_validation`](http://scikit-learn.org/stable/modules/cross_validation.html) de `scikit-learn` nos pueden facilitar mucho la labor.
+Si nos proporcionan la base de datos completa para que hagamos nosotros las particiones, todas las clases y funciones del módulo [`sklearn.model_selection`](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.model_selection) de `scikit-learn` nos pueden facilitar mucho la labor.
+
+
+```python
+from sklearn.model_selection import train_test_split
+
+inputs_iris = iris.values[:,0:-1]
+outputs_iris = iris.values[:,-1]
+
+train_inputs_iris, test_inputs_iris, train_outputs_iris, test_outputs_iris = \
+       train_test_split(inputs_iris, outputs_iris, test_size=0.33, random_state=42, stratify=outputs_iris)
+
+print(train_inputs_iris.shape)
+print(test_inputs_iris.shape)
+print([sum(train_outputs_iris==etiqueta)/train_outputs_iris.shape[0] for etiqueta in np.unique(outputs_iris)])
+```
+
+    (100, 4)
+    (50, 4)
+    [0.34, 0.33, 0.33]
+
 
 ## Labores de preprocesamiento
 
@@ -1297,9 +1193,7 @@ knn.fit(train_inputs_iris, train_outputs_iris_encoded)
 print(knn)
 ```
 
-    KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
-                         metric_params=None, n_jobs=None, n_neighbors=5, p=2,
-                         weights='uniform')
+    KNeighborsClassifier()
 
 
 Ya tenemos el modelo entrenado. Este modelo es de tipo *lazy*, en el sentido de que no existen parámetros a ajustar durante el entrenamiento. Lo único que hacemos es acomodar las entradas en una serie de estructuras de datos que faciliten el cálculo de distancias a la hora de predecir la etiqueta de datos nuevos. Si ahora queremos predecir las etiquetas de test, podemos hacer uso del método `predict`, que aplica el modelo ya entrenado a datos nuevos:
@@ -1311,10 +1205,10 @@ print(prediccion_test)
 print(test_outputs_iris_encoded)
 ```
 
-    [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 2 2 2 2
-     2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2]
-    [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2
-     2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2]
+    [2 1 0 1 2 1 1 0 1 1 0 0 0 0 0 2 2 1 2 1 2 1 0 2 0 2 2 0 0 2 2 2 0 1 0 0 2
+     1 1 1 1 1 0 0 2 1 2 1 1 2]
+    [2 1 0 1 2 1 1 0 1 1 0 0 0 0 0 2 2 1 2 1 2 1 0 2 0 2 2 0 0 2 2 2 0 1 0 0 2
+     1 1 1 1 1 0 0 2 1 2 2 1 2]
 
 
 Si queremos saber cómo de buena ha sido la clasificación, todo modelo de clasificación o regresión en `scikit-learn` tiene un método `score` que nos devuelve la bondad del modelo con respecto a los valores esperados, a partir de las entradas suministradas. La medida por defecto utilizada en [KNeighborsClassifier](http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html) es el porcentaje de patrones bien clasificados (CCR o *accuracy*). La función se utiliza de la siguiente forma (internamente, esta función llama a `predict`):
@@ -1328,7 +1222,7 @@ precision
 
 
 
-    0.9814814814814815
+    0.98
 
 
 
@@ -1342,7 +1236,7 @@ np.mean(prediccion_test == test_outputs_iris_encoded)
 
 
 
-    0.9814814814814815
+    0.98
 
 
 
@@ -1355,9 +1249,9 @@ cm = confusion_matrix(test_outputs_iris_encoded, prediccion_test)
 print(cm)
 ```
 
-    [[18  0  0]
-     [ 0 14  1]
-     [ 0  0 21]]
+    [[16  0  0]
+     [ 0 17  0]
+     [ 0  1 16]]
 
 
 ## Configurar los parámetros de un clasificador
@@ -1374,29 +1268,29 @@ for nn in range(1,15):
     print("%d vecinos: \tCCR train = %.2f%%, \tCCR test = %.2f%%" % (nn, precisionTrain*100, precisionTest*100))
 ```
 
-    1 vecinos: 	CCR train = 100.00%, 	CCR test = 98.15%
-    2 vecinos: 	CCR train = 95.83%, 	CCR test = 98.15%
-    3 vecinos: 	CCR train = 94.79%, 	CCR test = 98.15%
-    4 vecinos: 	CCR train = 94.79%, 	CCR test = 98.15%
-    5 vecinos: 	CCR train = 95.83%, 	CCR test = 98.15%
-    6 vecinos: 	CCR train = 95.83%, 	CCR test = 98.15%
-    7 vecinos: 	CCR train = 94.79%, 	CCR test = 100.00%
-    8 vecinos: 	CCR train = 96.88%, 	CCR test = 100.00%
-    9 vecinos: 	CCR train = 94.79%, 	CCR test = 100.00%
-    10 vecinos: 	CCR train = 96.88%, 	CCR test = 98.15%
-    11 vecinos: 	CCR train = 97.92%, 	CCR test = 100.00%
-    12 vecinos: 	CCR train = 97.92%, 	CCR test = 100.00%
-    13 vecinos: 	CCR train = 96.88%, 	CCR test = 100.00%
-    14 vecinos: 	CCR train = 94.79%, 	CCR test = 100.00%
+    1 vecinos: 	CCR train = 100.00%, 	CCR test = 94.00%
+    2 vecinos: 	CCR train = 99.00%, 	CCR test = 92.00%
+    3 vecinos: 	CCR train = 96.00%, 	CCR test = 96.00%
+    4 vecinos: 	CCR train = 98.00%, 	CCR test = 96.00%
+    5 vecinos: 	CCR train = 96.00%, 	CCR test = 98.00%
+    6 vecinos: 	CCR train = 95.00%, 	CCR test = 94.00%
+    7 vecinos: 	CCR train = 97.00%, 	CCR test = 98.00%
+    8 vecinos: 	CCR train = 97.00%, 	CCR test = 96.00%
+    9 vecinos: 	CCR train = 97.00%, 	CCR test = 96.00%
+    10 vecinos: 	CCR train = 97.00%, 	CCR test = 96.00%
+    11 vecinos: 	CCR train = 98.00%, 	CCR test = 96.00%
+    12 vecinos: 	CCR train = 98.00%, 	CCR test = 96.00%
+    13 vecinos: 	CCR train = 98.00%, 	CCR test = 94.00%
+    14 vecinos: 	CCR train = 98.00%, 	CCR test = 96.00%
 
 
 # Ejercicio propuesto para realizar
 
-Debes utilizar la base de datos `wine` para entrenar dos modelos supervisados de clasificación:
+Debes utilizar la base de datos `german` para entrenar dos modelos supervisados de clasificación:
 - Uno basado en los k vecinos más cercanos: [KNeighborsClassifier](http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html).
 - Otro basado en un modelo lineal. Vamos a utilizar el modelo de regresión logística: [LogisticRegression](http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html).
 
-La base de datos está disponible en la UCI, bajo el nombre [*Wine dataset*](http://archive.ics.uci.edu/ml/datasets/Wine). Bájala y preprocésala para realizar el entrenamiento. Divide los datos en 60% de entrenamiento y 40% de test. Tienes que normalizar todas las variables de entrada para que queden en el intervalo `[0,1]` (consulta información sobre [MinMaxScaler](http://scikit-learn.org/stable/modules/preprocessing.html#scaling-features-to-a-range)). Intenta ajustar lo mejor posibles los parámetros de los clasificadores.
+La base de datos está disponible en la UCI, bajo el nombre [*Statlog (German Credit Data) Data Set*](https://archive.ics.uci.edu/ml/datasets/Statlog+%28German+Credit+Data%29). Bájala y preprocésala para realizar el entrenamiento (utiliza la versión numérica, `german.data-numeric`, observa que los datos no tienen cabecera y utiliza el método `read_csv` de `pandas` especificando correctamente el separador, que en este caso es el uno o más espacios, es decir, `'\s+'`). Divide los datos en 60% de entrenamiento y 40% de test (utiliza la función [train_test_split](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split)). Tienes que normalizar todas las variables de entrada para que queden en el intervalo `[0,1]` (consulta información sobre [MinMaxScaler](http://scikit-learn.org/stable/modules/preprocessing.html#scaling-features-to-a-range)). Intenta ajustar lo mejor posibles los parámetros de los clasificadores.
 
 # Referencias
 Este tutorial se ha basado en gran parte en el siguiente material:
@@ -1409,3 +1303,8 @@ Se recomiendan los siguientes tutoriales adicionales para aprender más sobre el
 
 Por último, para aprender la sintaxis básica de Python en menos de 13 horas, se recomienda el siguiente curso de *CodeAcademy*:
 - Curso de Python de CodeAcademy. [https://www.codecademy.com/es/learn/python](https://www.codecademy.com/es/learn/python)
+
+
+```python
+
+```
