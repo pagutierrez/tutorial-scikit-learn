@@ -18,7 +18,7 @@ Nota: si haces este tutorial fuera del entorno de la UCO, no es necesario utiliz
 
 Si no tienes instalado `jupyter` puedes instalarlo con:
 ```bash
-pip install click --user --jupyter
+pip install jupyter --user --upgrade
 ```
 También puedes instalar `jupyter`, `click` y `scikit-learn` a través de `apt`, pero las versiones disponibles puede que no sean las últimas.
 
@@ -61,7 +61,7 @@ Note: if you run this tutorial from your computer, you do not really need the op
 
 If you do not have installed `jupyter`, you can install it by:
 ```bash
-pip install click --user --jupyter
+pip install jupyter --user --upgrade
 ```
 You can also install `jupyter`, `click` and `scikit-learn` using `apt`, but the available versions may not be the most recent ones.
 
